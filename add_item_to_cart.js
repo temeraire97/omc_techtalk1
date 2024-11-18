@@ -67,12 +67,12 @@ function update_tax_dom() {
   set_tax_dom(shopping_cart_total * 0.1);
 }
 
+/**
+ * @description 카트에 담긴 물품 가격의 합계를 구하는 함수
+ */
 function calc_cart_total() {
-  shopping_cart_total = 0;
-  for (var i = 0; i < shopping_cart.length; i++) {
-    var item = shopping_cart[i];
-    shopping_cart_total += item.price;
-  }
+  const shopping_cart_total = shopping_cart.reduce((accumulator, item)=>accumulator+item.price,0);
+
   set_cart_total_dom();
   update_shipping_icons(shopping_cart_total);
   update_tax_dom();
