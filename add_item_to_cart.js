@@ -39,15 +39,12 @@
 /**
  * @description 장바구니에 아이템을 추가하는 함수
  */
-var shopping_cart = [];
-var shopping_cart_total = 0;
-
 function add_item_to_cart(name, price) {
-  shopping_cart.push({
+  const shopping_cart = [{
     name: name,
     price: price,
-  });
-  calc_cart_total();
+  }]
+  calc_cart_total(shopping_cart);
 }
 
 /**
@@ -63,17 +60,17 @@ function update_shipping_icons(shopping_cart_total) {
   });
 }
 
-function update_tax_dom() {
+function update_tax_dom(shopping_cart_total) {
   set_tax_dom(shopping_cart_total * 0.1);
 }
 
 /**
  * @description 카트에 담긴 물품 가격의 합계를 구하는 함수
  */
-function calc_cart_total() {
-  const shopping_cart_total = shopping_cart.reduce((accumulator, item)=>accumulator+item.price,0);
+function calc_cart_total(shopping_cart) {
+  const shopping_cart_total = shopping_cart.reduce((total, item)=>total+item.price,0);
 
   set_cart_total_dom();
   update_shipping_icons(shopping_cart_total);
-  update_tax_dom();
+  update_tax_dom(shopping_cart_total);
 }
