@@ -71,7 +71,6 @@ function updateShippingIcons(shoppingCartTotal) {
 /**
  * @description 카트에 담긴 물품 가격의 합계를 구하는 함수
  */
-function calcCartTotal(shoppingCart) {
-  // for문 >>> reduce
-  return shoppingCart.reduce((total, item) => total + item.price, 0);
-}
+const calcCartTotal = (shoppingCart) =>
+  shoppingCart.reduce((total, item) => total + item.price, 0);
+
