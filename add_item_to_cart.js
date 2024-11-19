@@ -39,34 +39,39 @@
 /**
  * @description 장바구니에 아이템을 추가하는 함수
  */
-function add_item_to_cart(name, price) {
-  const shopping_cart = [{
-    name: name,
-    price: price,
-  }]
-  const shopping_cart_total = calc_cart_total(shopping_cart);
+function addItemToCart(name, price) {
+  const shoppingCart = [
+    {
+      name: name,
+      price: price,
+    },
+  ];
+  const shoppingCartTotal = calcCartTotal(shoppingCart);
 
-  update_cart_total_dom(shopping_cart_total);
-  update_shipping_icons(shopping_cart_total);
-  update_tax_dom(shopping_cart_total*0.1);
+  updateCartTotalDom(shoppingCartTotal);
+  updateShippingIcons(shoppingCartTotal);
+  updateTaxDom(shoppingCartTotal * 0.1);
 }
 
 /**
  * @description 배송비 아이콘 업데이트하는 함수
  */
-function update_shipping_icons(shopping_cart_total) {
-  const buy_buttons = get_buy_buttons_dom();
+function updateShippingIcons(shoppingCartTotal) {
+  const buyButtons = getBuyButtonsDom();
 
-  buy_buttons.forEach((button) => {
+  // for문 >>> forEach
+  buyButtons.forEach((button) => {
     const item = button.item;
-    if(item.price+shopping_cart_total>=20) button.show_free_shopping_icon();
-    else button.hide_free_shopping_icon();
+
+    if (item.price + shoppingCartTotal >= 20) button.showFreeShoppingIcon();
+    else button.hideFreeShoppingIcon();
   });
 }
 
 /**
  * @description 카트에 담긴 물품 가격의 합계를 구하는 함수
  */
-function calc_cart_total(shopping_cart) {
-  return shopping_cart.reduce((total, item)=>total+item.price,0);
+function calcCartTotal(shoppingCart) {
+  // for문 >>> reduce
+  return shoppingCart.reduce((total, item) => total + item.price, 0);
 }
