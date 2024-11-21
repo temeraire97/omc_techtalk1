@@ -39,38 +39,25 @@
 /**
  * @description 장바구니에 아이템을 추가하는 함수
  */
-var shopping_cart = [];
-var shopping_cart_total = 0;
 
-function add_item_to_cart(name, price) {
-  shopping_cart.push({
-    name: name,
-    price: price,
-  });
-  calc_cart_total();
-}
+const shoppingCart = [];
 
-function update_shipping_icons() {
-  var buy_buttons = get_buy_buttons_dom();
-  for (var i = 0; i < buy_buttons.length; i++) {
-    var button = buy_buttons[i];
-    var item = button.item;
-    if (item.price + shopping_cart_total >= 20) button.show_free_shopping_icon();
-    else button.hide_free_shopping_icon();
-  }
-}
+const addItemToCart = (shoppingCart, name, price) => shoppingCart.push({ name, price });
 
-function update_tax_dom() {
-  set_tax_dom(shopping_cart_total * 0.1);
-}
+const getTaxDom = (price) => price * 0.1;
 
-function calc_cart_total() {
-  shopping_cart_total = 0;
-  for (var i = 0; i < shopping_cart.length; i++) {
-    var item = shopping_cart[i];
-    shopping_cart_total += item.price;
-  }
-  set_cart_total_dom();
-  update_shipping_icons();
-  update_tax_dom();
+const calcCartTotal = (shoppingCart) =>
+  shoppingCart.reduce((total, item) => total + item.price + getTaxDom(item.price), 0);
+
+start();
+
+function start() {
+  addItemToCart(shoppingCart, 'milk', 2000);
+  addItemToCart(shoppingCart, 'bread', 1000);
+  const shoppingCartTotal = calcCartTotal(shoppingCart);
+
+  console.log(`shoppingCart`);
+  console.log(shoppingCart);
+  console.log(`shoppingCartTotal: ${shoppingCartTotal}`);
+  console.log('end');
 }
