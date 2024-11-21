@@ -36,16 +36,17 @@
  *
  */
 
+const shoppingCart = [];
+
 /**
  * @description 장바구니에 아이템을 추가하는 함수
  */
-
-const shoppingCart = [];
-
 const addItemToCart = (shoppingCart, name, price) => shoppingCart.push({ name, price });
 
+// 세금 계산
 const getTaxDom = (price) => price * 0.1;
 
+// 장바구니 총합 금액 계산
 const calcCartTotal = (shoppingCart) =>
   shoppingCart.reduce((total, item) => total + item.price + getTaxDom(item.price), 0);
 
